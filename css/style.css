@@ -1,0 +1,140 @@
+:root {
+  --background: #595a63;
+  --div: #bec0cc;
+  --text: #292b33;
+  --standard: #606eb3;
+  --positive: #74c969;
+  --function :#2d43b3;
+  --negative: #b35252;
+
+
+}
+
+
+
+
+nav a {
+  display:block;
+  text-decoration:none;
+  padding:8px;
+  border-radius:8px;
+  color: var(--text);
+  list-style: none
+}
+
+
+.card {
+  padding:18px;border-radius:10px;border:1px solid;
+}
+
+main {
+  background-color: var(--background);
+}
+
+
+h2 {
+  color: var(--text);
+}
+
+h4 {
+  color: var(--text);
+}
+
+h3 {
+  color: var(--text);
+}
+
+label {
+  color: var(--text);
+}
+
+textarea {
+  background-color: var(--div);
+}
+
+
+
+
+.btn {
+  background-color: #c9c5c5;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.btn.standard {
+  background-color: var(--standard);
+}
+
+.btn.function {
+  background-color: var(--function);
+}
+
+.btn.positive {
+  background-color: var(--positive);
+}
+
+.btn.negative {
+  background-color: #bd4040;
+}
+
+
+table {
+  width:100%;border-collapse:collapse;
+
+}
+
+table th, table td {
+  padding:12px;text-align:left;border-bottom:1px solid;
+}
+
+
+table thead th {
+  background:linear-gradient(180deg, rgba(42,139,214,0.06), transparent);font-weight:700;
+}
+
+.tableGrid th, .tableGrid td {
+  padding:18px;
+  color: var(--text);
+}
+
+
+.tableList th, .tableList td {
+  padding:18px;
+  color: var(--text);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #111111;
+}
+
+img {
+  padding-left: 10px;
+  padding-top: 10px;
+}
