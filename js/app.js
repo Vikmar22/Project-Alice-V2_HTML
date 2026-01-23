@@ -1,29 +1,65 @@
-const views = document.querySelectorAll(".view");
-const navLinks = document.querySelectorAll("nav a");
+document.addEventListener('DOMContentLoaded', () => {
+let orders = [];
+const tbodyOrders = document.getElementById("tbodyOrders");
+const emptyOrders = document.getElementById("emptyOrders");
 
-function showView(name) {
-  views.forEach(v => v.hidden = true);
+function renderOrders() {
+  if (!orders.length) {
+    tbodyOrders.innerHTML = '';
+    emptyOrders.hidden = false;
+    return;
+  }
+  emptyOrders.hidden = true;
 
-  const view = document.getElementById(`view-${name}`);
-  if (view) view.hidden = false;
+  tbodyOrders.innerHTML = orders
+    .map(
+      (order) => `
+        <tr data-id="${order.id}">
+        <td>${order.id}</td>
+        <td>${order.productName ?? ""}</td>
+</td>
+</tr>`
+    )
+    .join("");
+
 }
 
-navLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const viewName = link.dataset.view;
-    showView(viewName);
+function fillFormOrder(order) {
+  document.getElementById("orderId").value = order?.id ?? "";
+  document.getElementId
+
+}
 
 
-    history.pushState(null, "", `#${viewName}`);
+
+  //--------------------------------------------------------------------------------------------------------------------------------
+  const views = document.querySelectorAll(".view");
+  const navLinks = document.querySelectorAll("nav a");
+
+  function showView(name) {
+    views.forEach(v => v.hidden = true);
+
+    const view = document.getElementById(`view-${name}`);
+    if (view) view.hidden = false;
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const viewName = link.dataset.view;
+      showView(viewName);
+
+
+      history.pushState(null, "", `#${viewName}`);
+    });
   });
+
+
+  function initFromHash() {
+    const hash = location.hash.replace("#", "");
+    showView(hash || "login");
+  }
+
+  window.addEventListener("popstate", initFromHash);
+  initFromHash();
 });
-
-
-function initFromHash() {
-  const hash = location.hash.replace("#", "");
-  showView(hash || "login");
-}
-
-window.addEventListener("popstate", initFromHash);
-initFromHash();
