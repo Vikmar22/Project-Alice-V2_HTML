@@ -1,4 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
+async function apiFetch(utl, options = {}) {
+  const result = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+    },
+    ...options,
+  });
+
+  if (!result.ok) {
+    const txt =
+      result.status !== 204 ? await result.text().catch(() => "") : "";
+    const error = new Error(
+      `${result.status} ${result.statusText}${txt ? ` || ${txt}` : ""}`
+    );
+    error.status = result.status;
+    throw error;
+  }
+
+  if (result.status === 204) return null;
+
+  const contentType = result.headers.get("Content-Type") || "";
+  if (contentType.includes("application/json")) return result.json();
+  return null;
+  }
+
 let orders = [];
 const tbodyOrders = document.getElementById("tbodyOrders");
 const emptyOrders = document.getElementById("emptyOrders");
@@ -24,15 +50,23 @@ function renderOrders() {
 
 }
 
-function fillFormOrder(order) {
-  document.getElementById("orderId").value = order?.id ?? "";
-  document.getElementId
-
+async function getOrders() {
+  try {
+    const data = await apiFetch("https://localhost:8082/api/orders", {method : "GET"});
+    orders = Array.isArray(data) ? data : [];
+    renderOrders();
+  } catch (error) {
+    alert("kunde inte hämta ordrar: " + error.message);
+  }
 }
 
+document.getElementById("btnReloadOrders").addEventListener("click", getOrders);
 
 
-  //--------------------------------------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------------------------------------
+
   const views = document.querySelectorAll(".view");
   const navLinks = document.querySelectorAll("nav a");
 
@@ -62,4 +96,13 @@ function fillFormOrder(order) {
 
   window.addEventListener("popstate", initFromHash);
   initFromHash();
+
+
 });
+
+
+
+
+
+
+
