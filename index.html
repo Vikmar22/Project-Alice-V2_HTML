@@ -49,15 +49,26 @@
         <tr>
           <th>Order ID</th>
           <th>Product name</th>
+          <th>Inventory Id</th>
+          <th>Quantity</th>
+          <th>Available</th>
         </tr>
         </thead>
+        <tbody id="tbodyOrders"></tbody>
       </table>
+      <div id="emptyOrders">Inga ordrar</div>
 
     </div>
   </section>
+
   <section class="view" id="view-create">
     <div class="card" style="background-color: var(--div)">
       <h1>Create order</h1>
+      <form id="orderForm">
+        <input id="inventoryId" placeholder="Inventory Id">
+        <input id="quantity" placeholder="Quantity">
+        <button id="btnReserve">Create Order</button>
+      </form>
     </div>
   </section>
   <section class="view" id="view-inventory">
@@ -70,7 +81,7 @@
 
 
 
-  <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 
