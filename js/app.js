@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
   <tr data-id="${order.orderId}" data-inventory-id="${order.inventory?.inventoryId ??
     ''}">
   <td>${order.orderId ?? ""}</td>
-  <td>${order.productName ?? ""}</td>
   <td>${order.inventory?.inventoryId ?? ""}</td>
+  <td>${order.inventory?.productName ?? ""}</td>
   <td>${order.inventory?.quantity ?? ""}</td>
   <td>${order.inventory?.available ? "Yes" : "No"}</td>
 </tr>
@@ -59,14 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+  const ORDER_API = "http://localhost:8082/api/order/getorders";
+  const INVENTORY_API = "http://localhost:8081/api/inventory";
+
   document.getElementById("btnReloadOrders").addEventListener("click", async () => {
     try {
       const data = await apiFetch("http://localhost:8082/api/order/getorders", {method : "GET"});
       orders = (Array.isArray(data) ? data : []).map(o => ({
         orderId: o.orderId ?? o.id,
-        productName: o.productName ?? null,
         inventory: {
           inventoryId: o.inventoryId ?? o.inventory?.inventoryId ?? null,
+          productName: o.productName ?? o.inventory?.productName ?? null,
           quantity: (o.quantity ?? o.inventory?.quantity ?? 0),
           available: Boolean(o.available ?? o.inventory?.available),
         }
@@ -94,6 +97,22 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("Kunde inte skapa order och reservera lager: " + error.message);
     }
   });
+
+  document.getElementById("btnCreateInventory").addEventListener("click", async () => {
+    const productName = document.getElementById("productName").value;
+    const quantity = document.getElementById("inventoryQuantity").value;
+
+    const urlCreatInventory = `http://localhost:8081/api/inventory/create?productName=${productName}&quantity=${quantity}`;
+    try {
+      await apiFetch(urlCreatInventory, {
+        method: "POST"});
+      alert("Lagerpost skapad.");
+    } catch (error) {
+      alert("Kunde inte skapa lagerpost: " + error.message);
+    }
+  });
+
+
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -128,8 +147,3 @@ document.addEventListener('DOMContentLoaded', () => {
   initFromHash();
 
 });
-
-
-
-
-

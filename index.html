@@ -48,8 +48,8 @@
         <thead>
         <tr>
           <th>Order ID</th>
-          <th>Product name</th>
           <th>Inventory Id</th>
+          <th>Product name</th>
           <th>Quantity</th>
           <th>Available</th>
         </tr>
@@ -67,15 +67,22 @@
       <form id="orderForm">
         <input id="inventoryId" placeholder="Inventory Id">
         <input id="quantity" placeholder="Quantity">
-        <button id="btnReserve">Create Order</button>
+        <button id="btnReserve" class="btn btn positive">Create Order</button>
       </form>
     </div>
   </section>
+
   <section class="view" id="view-inventory">
     <div class="card" style="background-color: var(--div)">
-      <h1>Get inventory</h1>
+      <h1>Create Inventory</h1>
+      <form id="inventoryForm">
+        <input id="productName" placeholder="Product Name">
+        <input id="inventoryQuantity" placeholder="Quantity">
+        <button id="btnCreateInventory" class="btn btn positive">Create Inventory</button>
+      </form>
     </div>
   </section>
+
 
 </main>
 
