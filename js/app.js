@@ -1,10 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log("app.js running")
 
+  function setBasicAuth(usernameLogin, passwordLogin) {
+    const token = btoa(usernameLogin + ":" + passwordLogin);
+    sessionStorage.setItem("AUTH", "Basic " + token);
+
+  }
+
+  function clearAuth() {
+    sessionStorage.removeItem("AUTH");
+  }
+
   function authHeader() {
     const authValue = sessionStorage.getItem("AUTH");
     return authValue ? {Authorization: authValue} : {};
   }
+
+
   async function apiFetch(url, options = {}) {
     const result = await fetch(url, {
       headers: {
@@ -30,6 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentType = result.headers.get("Content-Type") || "";
     if (contentType.includes("application/json")) return result.json();
     return null;
+  }
+
+  function fillFormLogin(user) {
+    document.getElementById("usernameLogin").value = user?.usernameLogin ?? "";
+    document.getElementById("passwordLogin").value = user?.passwordLogin ?? "";
   }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -145,5 +162,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener("popstate", initFromHash);
   initFromHash();
+
+  document.getElementById("btnLogin").addEventListener("click", () => {
+    const usernameLogin = document.getElementById("usernameLogin").value;
+    const passwordLogin = document.getElementById("passwordLogin").value;
+    setBasicAuth(usernameLogin, passwordLogin);
+    alert("Inloggad i frontEnd");
+  });
+
+  document.getElementById("btnLogout").addEventListener("click", () => {
+    clearAuth();
+    fillFormLogin(null);
+    document.getElementById("usernameLogin").focus();
+    alert("Utloggad ur frontend");
+  });
 
 });

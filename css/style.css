@@ -4,7 +4,7 @@
   --text: #292b33;
   --standard: #606eb3;
   --positive: #74c969;
-  --function :#2d43b3;
+  --function :#5f19f7;
   --negative: #b35252;
 
 
@@ -73,15 +73,33 @@ textarea {
 }
 
 .btn.function {
-  background-color: var(--function);
+  background:linear-gradient(80deg, var(--function), transparent);
 }
 
 .btn.positive {
-  background-color: var(--positive);
+  background: linear-gradient(80deg, var(--positive), transparent);
 }
 
 .btn.negative {
   background-color: #bd4040;
+}
+
+div.blue {
+  background-color: #5BCEFA;
+  width: 250px;
+  height: 5px;
+}
+
+div.pink {
+  background-color: #F5A9B8;
+  width: 250px;
+  height: 5px;
+}
+
+div.white {
+  background-color: #FFFFFF;
+  width: 250px;
+  height: 5px;
 }
 
 
@@ -138,3 +156,4 @@ img {
   padding-left: 10px;
   padding-top: 10px;
 }
+
