@@ -30,8 +30,10 @@
       <ul>
         <li><a href="#login" data-view="login" class="btn function">Login(maybe)</a></li>
         <li><a href="#orders" data-view="orders" class="btn function">get orders</a></li>
-        <li><a href="#users" data-view="create" class="btn function">create order</a></li>
-        <li><a href="#bookings" data-view="inventory" class="btn function">get inventory</a></li>
+        <li><a href="#orderPost" data-view="create" class="btn function">create order</a></li>
+        <li><a href="#inventoryGet" data-view="get" class="btn function">get i</a></li>
+        <li><a href="#inventoryPost" data-view="inventory" class="btn function">create inventory</a></li>
+        <li><a href="#users" data-view="users" class="btn function">users</a></li>
       </ul>
     </nav>
   </section>
@@ -82,6 +84,56 @@
         <input id="productName" placeholder="Product Name">
         <input id="inventoryQuantity" placeholder="Quantity">
         <button id="btnCreateInventory" class="btn btn positive">Create Inventory</button>
+      </form>
+    </div>
+  </section>
+  <section class="view" id="view-get">
+    <div class="card" style="background-color: var(--div)">
+      <h1>Get Inventory</h1>
+      <button id="btnReloadInventory" class="btn btn function">Reload Inventory</button>
+      <table>
+        <thead>
+        <tr>
+          <th>Inventory ID</th>
+          <th>Quantity</th>
+          <th>Available</th>
+        </tr>
+        </thead>
+        <tbody id="tbodyInventory"></tbody>
+      </table>
+      <div id="emptyInventory">No Inventory Found.</div>
+    </div>
+  </section>
+  <section class="view" id="view-users">
+    <div class="card" style="background-color: var(--div)">
+      <button id="btnReloadUsers" class="btn btn function">Load Users</button>
+      <h2>Create/Edit User</h2>
+      <table>
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Email</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>No Of Orders</th>
+          <th>Phone</th>
+          <th>Role</th>
+          <th>Username</th>
+        </tr>
+        </thead>
+        <tbody id="tbodyUsers"></tbody>
+      </table>
+      <p id="emptyUsers" hidden>No Users Found.</p>
+
+      <form id="userForm">
+        <input id="userId" type="hidden">
+        <input id="email" placeholder="Email" required>
+        <input id="username" placeholder="Username" required>
+        <input id="firstName" placeholder="First name" required>
+        <input id="lastName" placeholder="Last name" required>
+        <input id="password" placeholder="Password">
+        <button type="submit" class="btn btn positive">Save</button>
+        <button type="button" id="btnClearUser" class="btn btn negative">Clear</button>
       </form>
     </div>
   </section>

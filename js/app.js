@@ -129,6 +129,131 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// INVENTORY MANAGEMENT
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  let inventory = [];
+  const tbodyInventory = document.getElementById("tbodyInventory");
+  const emptyInventory = document.getElementById("emptyInventory");
+
+  function renderInventory() {
+    if (!inventory.length) {
+      tbodyInventory.innerHTML = '';
+      emptyInventory.hidden = false;
+      return;
+    }
+    emptyInventory.hidden = true;
+
+    tbodyInventory.innerHTML = inventory.map(item => `
+  <tr data-id="${item.inventoryId}">
+  <td>${item.inventoryId ?? ""}</td>
+  <td>${item.quantity ?? ""}</td>
+  <td>${item.available ? "Yes" : "No"}</td>
+  </tr>
+`).join("");
+
+  }
+
+
+  document.getElementById("btnReloadInventory").addEventListener("click", async () => {
+    try {
+      const data = await apiFetch("http://localhost:8081/api/inventory/getInventory", {method : "GET"});
+      inventory = Array.isArray(data) ? data : [];
+      renderInventory();
+    } catch (error) {
+      alert("Kunde inte hämta lager: " + error.message);
+    }
+  });
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// USER MANAGEMENT
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+  let users = [];
+  const tbodyUsers = document.getElementById("tbodyUsers");
+  const emptyUsers = document.getElementById("emptyUsers");
+
+  function renderUsers() {
+    if (!users.length) {
+      tbodyUsers.innerHTML = '';
+      emptyUsers.hidden = false;
+      return;
+    }
+    emptyUsers.hidden = true;
+
+    tbodyUsers.innerHTML = users.map(user => `
+  <tr data-id="${user.userId}">
+  <td>${users.userId ?? ""}</td>
+  <td>${users.email ?? ""}</td>
+  <td>${users.username ?? ""}</td>
+  <td>${users.password ?? ""}</td>
+  <td>${users.firstName ?? ""}</td>
+  <td>${users.lastName ?? ""}</td>
+</tr>
+`).join("");
+
+  }
+
+  function fillFormUser(user) {
+    document.getElementById("userId").value = user?.userId ?? "";
+    document.getElementById("email").value = user?.email ?? "";
+    document.getElementById("username").value = user?.username ?? "";
+    document.getElementById("password").value = user?.password ?? "";
+    document.getElementById("firstName").value = user?.firstName ?? "";
+    document.getElementById("lastName").value = user?.lastName ?? "";
+  }
+
+  function getPayloadFromFormUser() {
+    return {
+      email: document.getElementById("email").value,
+      username: document.getElementById("username").value,
+      password: document.getElementById("password").value,
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value
+    };
+  }
+
+  function getIdFromFormUser() {
+    const idStrUser = document.getElementById("userId").value.trim();
+    return idStrUser ? Number(idStrUser) : null;
+  }
+
+  async function getUsers() {
+    try {
+      const data = await apiFetch("http://localhost:8080/api/users/getUsers", {method: "GET"});
+      users = Array.isArray(data) ? data : [];
+      renderUsers();
+    } catch (error) {
+      alert("Kunde inte hämta användare: " + error.message);
+    }
+  }
+
+  async function createUser(payloadUser) {
+    try {
+      await apiFetch("http://localhost:8080/api/user/createUser", {method: "POST", body: JSON.stringify(payloadUser)
+      });
+      fillFormUser(null);
+    } catch (error) {
+      if (error.status === 401) alert("401 Unauthorized || Logga in först.");
+      else if (error.status === 403) alert("403 Forbidden || Du saknar rätt roll.");
+      else alert("Fel vid skapande av användare: " + error.message);
+    }
+  }
+
+  document.getElementById("userForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const payloadUser = getPayloadFromFormUser();
+    await createUser(payloadUser);
+
+  })
+
+  document.getElementById("btnReloadUsers").addEventListener("click", getUsers);
+
+
+
+
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
