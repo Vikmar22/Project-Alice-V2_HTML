@@ -186,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tbodyUsers.innerHTML = users.map(user => `
   <tr data-id="${user.userId}">
   <td>${users.userId ?? ""}</td>
-  <td>${users.email ?? ""}</td>
   <td>${users.username ?? ""}</td>
   <td>${users.password ?? ""}</td>
   <td>${users.firstName ?? ""}</td>
@@ -198,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function fillFormUser(user) {
     document.getElementById("userId").value = user?.userId ?? "";
-    document.getElementById("email").value = user?.email ?? "";
     document.getElementById("username").value = user?.username ?? "";
     document.getElementById("password").value = user?.password ?? "";
     document.getElementById("firstName").value = user?.firstName ?? "";
@@ -207,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getPayloadFromFormUser() {
     return {
-      email: document.getElementById("email").value,
       username: document.getElementById("username").value,
       password: document.getElementById("password").value,
       firstName: document.getElementById("firstName").value,
@@ -303,3 +300,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
