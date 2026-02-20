@@ -158,7 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById("btnReloadInventory").addEventListener("click", async () => {
     try {
-      const data = await apiFetch("http://localhost:8081/api/inventory/getInventory", {method : "GET"});
+      const data = await apiFetch("http://localhost:8081/api/inventory/getInventory", {method : "GET",
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+      });
       inventory = Array.isArray(data) ? data : [];
       renderInventory();
     } catch (error) {
@@ -185,11 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tbodyUsers.innerHTML = users.map(user => `
   <tr data-id="${user.userId}">
-  <td>${users.userId ?? ""}</td>
-  <td>${users.username ?? ""}</td>
-  <td>${users.password ?? ""}</td>
-  <td>${users.firstName ?? ""}</td>
-  <td>${users.lastName ?? ""}</td>
+  <td>${user.userId ?? ""}</td>
+  <td>${user.username ?? ""}</td>
+  <td>${user.firstName ?? ""}</td>
+  <td>${user.lastName ?? ""}</td>
+  <td>${user.role ?? ""}</td>
 </tr>
 `).join("");
 
@@ -208,7 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
       username: document.getElementById("username").value,
       password: document.getElementById("password").value,
       firstName: document.getElementById("firstName").value,
-      lastName: document.getElementById("lastName").value
+      lastName: document.getElementById("lastName").value,
+      role: document.getElementById("role").value
     };
   }
 
@@ -219,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function getUsers() {
     try {
-      const data = await apiFetch("http://localhost:8080/api/users/getUsers", {method: "GET"});
+      const data = await apiFetch("http://localhost:8080/api/user/getUsers", {method: "GET"});
       users = Array.isArray(data) ? data : [];
       renderUsers();
     } catch (error) {
@@ -239,12 +244,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  async function updateUser(id, payloadUser) {
+    try {
+      await apiFetch(`http://localhost:8080/api/users/${id}`, {method: "PUT", body: JSON.stringify(payloadUser)
+      });
+      await getUsers();
+      fillFormUser(null);
+    } catch (error) {
+      if (error.status === 401) alert("401 Unauthorized || Logga in först.");
+      else if (error.status === 403)
+        alert("403 Forbidden || Du saknar rätt roll");
+      else if (error.status === 404)
+        alert("404 || Användaren finns inte.");
+      else alert("Fel vid uppdaterande: " + error.message);
+    }
+  }
+
   document.getElementById("userForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const payloadUser = getPayloadFromFormUser();
-    await createUser(payloadUser);
+    const userId = getIdFromFormUser();
 
-  })
+    if (userId) {
+      await updateUser(userId, payloadUser);
+    } else {
+      await createUser(payloadUser);
+    }
+
+  });
 
   document.getElementById("btnReloadUsers").addEventListener("click", getUsers);
 
@@ -289,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const usernameLogin = document.getElementById("usernameLogin").value;
     const passwordLogin = document.getElementById("passwordLogin").value;
     setBasicAuth(usernameLogin, passwordLogin);
+    console.log(usernameLogin, passwordLogin);
     alert("Inloggad i frontEnd");
   });
 
@@ -300,4 +328,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
-

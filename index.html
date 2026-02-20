@@ -24,27 +24,47 @@
 
 <body>
 <main>
-  <section>
-    <div class="card"></div>
-    <nav>
+  <!-- <section>
+    <div class="card navigation" style="background-color: var(--div);">
+      <nav>
       <ul>
-        <li><a href="#login" data-view="login" class="btn function">Login(maybe)</a></li>
-        <li><a href="#orders" data-view="orders" class="btn function">get orders</a></li>
-        <li><a href="#orderPost" data-view="create" class="btn function">create order</a></li>
-        <li><a href="#inventoryGet" data-view="get" class="btn function">get i</a></li>
-        <li><a href="#inventoryPost" data-view="inventory" class="btn function">create inventory</a></li>
-        <li><a href="#users" data-view="users" class="btn function">users</a></li>
+        <li><a href="#login" data-view="login" class="btn function">Login</a></li>
+        <li><a href="#orders" data-view="orders" class="btn function">Get Orders</a></li>
+        <li><a href="#orderPost" data-view="create" class="btn function">Create Order</a></li>
+        <li><a href="#inventoryGet" data-view="get" class="btn function">Get Inventory</a></li>
+        <li><a href="#inventoryPost" data-view="inventory" class="btn function">Create Inventory</a></li>
+        <li><a href="#users" data-view="users" class="btn function">Create User</a></li>
+        <li><a href="#usersGet" data-view="usersGet" class="btn function">Get Users</a></li>
       </ul>
     </nav>
+    </div>
+  </section> -->
+
+  <section>
+    <nav>
+      <ul>
+        <li><a href="#login" data-view="login" class="btn function">Login</a></li>
+        <li><a href="#orders" data-view="orders" class="btn function">Get Orders</a></li>
+        <li><a href="#orderPost" data-view="create" class="btn function">Create Order</a></li>
+        <li><a href="#inventoryGet" data-view="get" class="btn function">Get Inventory</a></li>
+        <li><a href="#inventoryPost" data-view="inventory" class="btn function">Create Inventory</a></li>
+        <li><a href="#users" data-view="users" class="btn function">Create User</a></li>
+        <li><a href="#usersGet" data-view="usersGet" class="btn function">Get Users</a></li>
+      </ul>
+  </section>
+
+
   </section>
   <section class="view" id="view-login">
-    <div class="card" style="background-color: var(--div)">
+    <div class="card" style="background-color: var(--div);">
       <input id="usernameLogin" placeholder="Username">
       <input id="passwordLogin" type="password" placeholder="Password">
       <button id="btnLogin" class="btn btn positive">Login</button>
       <button id="btnLogout" class="btn btn negative">Logout</button>
     </div>
   </section>
+
+
   <section class="view" id="view-orders">
     <div class="card" style="background-color: var(--div)">
       <h1>Get orders here</h1>
@@ -62,7 +82,6 @@
         <tbody id="tbodyOrders"></tbody>
       </table>
       <div id="emptyOrders">Inga ordrar</div>
-
     </div>
   </section>
 
@@ -87,6 +106,7 @@
       </form>
     </div>
   </section>
+
   <section class="view" id="view-get">
     <div class="card" style="background-color: var(--div)">
       <h1>Get Inventory</h1>
@@ -95,6 +115,7 @@
         <thead>
         <tr>
           <th>Inventory ID</th>
+          <th>Product name</th>
           <th>Quantity</th>
           <th>Available</th>
         </tr>
@@ -106,51 +127,100 @@
   </section>
   <section class="view" id="view-users">
     <div class="card" style="background-color: var(--div)">
-      <button id="btnReloadUsers" class="btn btn function">Load Users</button>
       <h2>Create/Edit User</h2>
-      <table>
-        <thead>
-        <tr>
-          <th>Id</th>
-          <th>Email</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>No Of Orders</th>
-          <th>Phone</th>
-          <th>Role</th>
-          <th>Username</th>
-        </tr>
-        </thead>
-        <tbody id="tbodyUsers"></tbody>
-      </table>
-      <p id="emptyUsers" hidden>No Users Found.</p>
-
       <form id="userForm">
         <input id="userId" type="hidden">
         <input id="username" placeholder="Username" required>
         <input id="firstName" placeholder="First name" required>
         <input id="lastName" placeholder="Last name" required>
-        <input id="password" placeholder="Password">
+        <input id="password" placeholder="Password" required>
+        <input id="role" placeholder="Role">
         <button type="submit" class="btn btn positive">Save</button>
         <button type="button" id="btnClearUser" class="btn btn negative">Clear</button>
       </form>
     </div>
   </section>
-  <section>
-    <div class="card div blue"></div>
+
+  <section class="view" id="view-usersGet">
+    <div class="card" style="background-color: var(--div);">
+      <button id="btnReloadUsers" class="btn btn function">Load Users</button>
+      <table>
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Role</th>
+        </tr>
+        </thead>
+        <tbody id="tbodyUsers"></tbody>
+      </table>
+      <p id="emptyUsers" hidden>No Users Found.</p>
+    </div>
   </section>
-  <section>
-    <div class="card div pink" ></div>
+
+  <!-- <section style="float: left;">
+    <div class="card div blue">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--blue); color: var(--blue)" class="hidden"></button>
+    </div>
+
+    <div class="card div pink">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--pink); color: var(--pink)" class="hidden"></button>
+    </div>
+
+
+    <div class="card div white">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--white); color: var(--white)" class="hidden"></button>
+    </div>
+
+
+    <div class="card div pink">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--pink); color: var(--pink)" class="hidden"></button>
+    </div>
+
+
+    <div class="card div blue">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--blue); color: var(--blue)" class="hidden"></button>
+    </div>
+  </section> -->
+
+  <!-- <section>
+    <div class="card div blue" style="float: left;">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--blue); color: var(--blue)" class="hidden"></button>
+    </div>
   </section>
+
   <section>
-    <div class="card div white" ></div>
+    <div class="card div pink" style="float: left;">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--pink); color: var(--pink)" class="hidden"></button>
+    </div>
   </section>
+
   <section>
-    <div class="card div pink" ></div>
+    <div class="card div white">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--white); color: var(--white)" class="hidden"></button>
+    </div>
   </section>
+
   <section>
-    <div class="card div blue" ></div>
+    <div class="card div pink">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--pink); color: var(--pink)" class="hidden"></button>
+    </div>
   </section>
+
+  <section>
+    <div class="card div blue">
+      <button onclick="alert('Hello from Alice!')" style="background-color: var(--blue); color: var(--blue)" class="hidden"></button>
+    </div>
+  </section> -->
+
+
+
+
+
+
+
 
 
 

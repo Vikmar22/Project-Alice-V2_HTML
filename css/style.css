@@ -6,25 +6,24 @@
   --positive: #74c969;
   --function :#5f19f7;
   --negative: #b35252;
-
-
+  --blue: #5BCEFA;
+  --pink: #F5A9B8;
+  --white: #FFFFFF;
 }
-
-
-
-
-nav a {
-  display:block;
-  text-decoration:none;
-  padding:8px;
-  border-radius:8px;
-  color: var(--text);
-  list-style: none
-}
-
 
 .card {
-  padding:18px;border-radius:10px;border:1px solid;
+  padding:18px;
+  border-radius:10px;
+  border:1px solid;
+
+
+}
+
+.card.navigation {
+  padding:18px;
+  border-radius:10px;
+  border:1px solid;
+  float: left;
 }
 
 main {
@@ -68,12 +67,27 @@ textarea {
   border-radius: 12px;
 }
 
+.hidden {
+  background-color: #c9c5c5;
+  border: none;
+  color: black;
+  /* padding: 10px 20px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 12px;
+  width: 250px;
+  height: 15px;
+}
+
 .btn.standard {
   background-color: var(--standard);
 }
 
 .btn.function {
-  background:linear-gradient(80deg, var(--function), transparent);
+  background: linear-gradient(80deg, var(--function), transparent);
 }
 
 .btn.positive {
@@ -87,19 +101,19 @@ textarea {
 div.blue {
   background-color: #5BCEFA;
   width: 250px;
-  height: 5px;
+  height: 2px;
 }
 
 div.pink {
   background-color: #F5A9B8;
   width: 250px;
-  height: 5px;
+  height: 2px;
 }
 
 div.white {
   background-color: #FFFFFF;
   width: 250px;
-  height: 5px;
+  height: 2px;
 }
 
 
@@ -128,6 +142,18 @@ table thead th {
   color: var(--text);
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Navigation Horizontal */
+
+nav a {
+  display:block;
+  text-decoration:none;
+  padding:8px;
+  border-radius:8px;
+  color: var(--text);
+  list-style: none
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -151,6 +177,44 @@ ul li a {
 ul li a:hover {
   background-color: #111111;
 }
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Navigation Vertical */
+
+/* nav a {
+  display:block;
+  text-decoration:none;
+  padding:8px;
+  border-radius:8px;
+  color: var(--text);
+  list-style: none
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+ul li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+
+li a:hover {
+  background-color: #555555;
+  color: white;
+} */
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 img {
   padding-left: 10px;
