@@ -115,19 +115,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  document.getElementById("btnCreateInventory").addEventListener("click", async () => {
-    const productName = document.getElementById("productName").value;
-    const quantity = document.getElementById("inventoryQuantity").value;
+// document.getElementById("btnCreateInventory").addEventListener("click", async () => {
+//   const productName = document.getElementById("productName").value;
+//   const quantity = document.getElementById("inventoryQuantity").value;
 
-    const urlCreatInventory = `http://localhost:8081/api/inventory/create?productName=${productName}&quantity=${quantity}`;
-    try {
-      await apiFetch(urlCreatInventory, {
-        method: "POST"});
-      alert("Lagerpost skapad.");
-    } catch (error) {
-      alert("Kunde inte skapa lagerpost: " + error.message);
-    }
-  });
+//   const urlCreatInventory = `http://localhost:8081/api/inventory/create?productName=${productName}&quantity=${quantity}`;
+//   try {
+//     await apiFetch(urlCreatInventory, {
+//       method: "POST"});
+//     alert("Lagerpost skapad.");
+// } catch (error) {
+//     alert("Kunde inte skapa lagerpost: " + error.message);
+//   }
+// });
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // INVENTORY MANAGEMENT
@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tbodyInventory.innerHTML = inventory.map(item => `
   <tr data-id="${item.inventoryId}">
   <td>${item.inventoryId ?? ""}</td>
+  <td>${item.productName ?? ""}</td>
   <td>${item.quantity ?? ""}</td>
   <td>${item.available ? "Yes" : "No"}</td>
   </tr>

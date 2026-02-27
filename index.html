@@ -22,41 +22,42 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
-<main>
-  <!-- <section>
+<body class="body">
+<main class="main">
+  <section>
     <div class="card navigation" style="background-color: var(--div);">
       <nav>
-      <ul>
-        <li><a href="#login" data-view="login" class="btn function">Login</a></li>
-        <li><a href="#orders" data-view="orders" class="btn function">Get Orders</a></li>
-        <li><a href="#orderPost" data-view="create" class="btn function">Create Order</a></li>
-        <li><a href="#inventoryGet" data-view="get" class="btn function">Get Inventory</a></li>
-        <li><a href="#inventoryPost" data-view="inventory" class="btn function">Create Inventory</a></li>
-        <li><a href="#users" data-view="users" class="btn function">Create User</a></li>
-        <li><a href="#usersGet" data-view="usersGet" class="btn function">Get Users</a></li>
-      </ul>
-    </nav>
+        <ul>
+          <li><a href="#login" data-view="login" class="btn function">Login</a></li>
+          <li><a href="#orders" data-view="orders" class="btn function">Get Orders</a></li>
+          <li><a href="#orderPost" data-view="create" class="btn function">Create Order</a></li>
+          <li><a href="#inventoryGet" data-view="get" class="btn function">Get Inventory</a></li>
+          <!-- <li><a href="#inventoryPost" data-view="inventory" class="btn function">Create Inventory</a></li> -->
+          <li><a href="#users" data-view="users" class="btn function">Create User</a></li>
+          <li><a href="#usersGet" data-view="usersGet" class="btn function">Get Users</a></li>
+        </ul>
+      </nav>
     </div>
+  </section>
+
+  <!-- <section>
+    <nav>
+    <ul>
+      <li><a href="#login" data-view="login" class="btn function">Login</a></li>
+      <li><a href="#orders" data-view="orders" class="btn function">Get Orders</a></li>
+      <li><a href="#orderPost" data-view="create" class="btn function">Create Order</a></li>
+      <li><a href="#inventoryGet" data-view="get" class="btn function">Get Inventory</a></li>
+      <li><a href="#inventoryPost" data-view="inventory" class="btn function">Create Inventory</a></li>
+      <li><a href="#users" data-view="users" class="btn function">Create User</a></li>
+      <li><a href="#usersGet" data-view="usersGet" class="btn function">Get Users</a></li>
+    </ul>
   </section> -->
 
-  <section>
-    <nav>
-      <ul>
-        <li><a href="#login" data-view="login" class="btn function">Login</a></li>
-        <li><a href="#orders" data-view="orders" class="btn function">Get Orders</a></li>
-        <li><a href="#orderPost" data-view="create" class="btn function">Create Order</a></li>
-        <li><a href="#inventoryGet" data-view="get" class="btn function">Get Inventory</a></li>
-        <li><a href="#inventoryPost" data-view="inventory" class="btn function">Create Inventory</a></li>
-        <li><a href="#users" data-view="users" class="btn function">Create User</a></li>
-        <li><a href="#usersGet" data-view="usersGet" class="btn function">Get Users</a></li>
-      </ul>
-  </section>
 
-
-  </section>
   <section class="view" id="view-login">
-    <div class="card" style="background-color: var(--div);">
+
+    <div class="card middle login" style="background-color: var(--div);">
+      <h2>Login</h2>
       <input id="usernameLogin" placeholder="Username">
       <input id="passwordLogin" type="password" placeholder="Password">
       <button id="btnLogin" class="btn btn positive">Login</button>
@@ -66,9 +67,10 @@
 
 
   <section class="view" id="view-orders">
-    <div class="card" style="background-color: var(--div)">
+    <div class="card middle orders" style="background-color: var(--div);">
       <h1>Get orders here</h1>
       <button id="btnReloadOrders" class="btn btn function">Reload Orders</button>
+
       <table>
         <thead>
         <tr>
@@ -79,14 +81,15 @@
           <th>Available</th>
         </tr>
         </thead>
+
         <tbody id="tbodyOrders"></tbody>
       </table>
-      <div id="emptyOrders">Inga ordrar</div>
+      <div id="emptyOrders">No Orders Found.</div>
     </div>
   </section>
 
   <section class="view" id="view-create">
-    <div class="card" style="background-color: var(--div)">
+    <div class="card middle orders" style="background-color: var(--div)">
       <h1>Create order</h1>
       <form id="orderForm">
         <input id="inventoryId" placeholder="Inventory Id">
@@ -96,8 +99,8 @@
     </div>
   </section>
 
-  <section class="view" id="view-inventory">
-    <div class="card" style="background-color: var(--div)">
+  <!-- <section class="view" id="view-inventory">
+    <div class="card middle" style="background-color: var(--div)">
       <h1>Create Inventory</h1>
       <form id="inventoryForm">
         <input id="productName" placeholder="Product Name">
@@ -105,10 +108,10 @@
         <button id="btnCreateInventory" class="btn btn positive">Create Inventory</button>
       </form>
     </div>
-  </section>
+  </section> -->
 
   <section class="view" id="view-get">
-    <div class="card" style="background-color: var(--div)">
+    <div class="card middle inventory" style="background-color: var(--div)">
       <h1>Get Inventory</h1>
       <button id="btnReloadInventory" class="btn btn function">Reload Inventory</button>
       <table>
@@ -125,8 +128,9 @@
       <div id="emptyInventory">No Inventory Found.</div>
     </div>
   </section>
+
   <section class="view" id="view-users">
-    <div class="card" style="background-color: var(--div)">
+    <div class="card middle users" style="background-color: var(--div)">
       <h2>Create/Edit User</h2>
       <form id="userForm">
         <input id="userId" type="hidden">
@@ -142,7 +146,7 @@
   </section>
 
   <section class="view" id="view-usersGet">
-    <div class="card" style="background-color: var(--div);">
+    <div class="card middle users" style="background-color: var(--div);">
       <button id="btnReloadUsers" class="btn btn function">Load Users</button>
       <table>
         <thead>

@@ -1,7 +1,7 @@
 :root {
   --background: #595a63;
   --div: #bec0cc;
-  --text: #292b33;
+  --text: #000000;
   --standard: #606eb3;
   --positive: #74c969;
   --function :#5f19f7;
@@ -11,12 +11,76 @@
   --white: #FFFFFF;
 }
 
+.body {
+  background-color: var(--background);
+
+}
+
+.middle {
+  position: absolute;
+  top: 190px;
+  left: 600px;
+  bottom: 100px;
+  right: 100px;
+}
+
+.login {
+  position: absolute;
+  top: 190px;
+  left: 825px;
+  bottom: 100px;
+  right: 100px;
+  height: 200px;
+  width: 400px;
+}
+
+.orders {
+  position: absolute;
+  top: 190px;
+  left: 825px;
+  bottom: 100px;
+  right: 100px;
+  height: 450px;
+  width: 600px;
+
+}
+
+.inventory {
+  position: absolute;
+  top: 190px;
+  left: 825px;
+  bottom: 100px;
+  right: 100px;
+  height: 450px;
+  width: 600px;
+}
+
+.users {
+  position: absolute;
+  top: 190px;
+  left: 825px;
+  bottom: 100px;
+  right: 100px;
+  height: 370px;
+  width: 600px;
+}
+
+.text {
+  position: absolute;
+  top: 190px;
+  left: 825px;
+  bottom: 100px;
+  right: 100px;
+  /* height: 370px;
+  width: 600px; */
+}
+
+
+
 .card {
   padding:18px;
   border-radius:10px;
   border:1px solid;
-
-
 }
 
 .card.navigation {
@@ -26,13 +90,18 @@
   float: left;
 }
 
-main {
+.card.hidden {
   background-color: var(--background);
+  color: var(--background);
 }
 
+/* main {
+  background-color: var(--background);
+} */
 
 h2 {
   color: var(--text);
+
 }
 
 h4 {
@@ -51,9 +120,6 @@ textarea {
   background-color: var(--div);
 }
 
-
-
-
 .btn {
   background-color: #c9c5c5;
   border: none;
@@ -62,7 +128,7 @@ textarea {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  margin: 4px 2px;
+  margin: 20px 10px;
   cursor: pointer;
   border-radius: 12px;
 }
@@ -95,7 +161,7 @@ textarea {
 }
 
 .btn.negative {
-  background-color: #bd4040;
+  background: linear-gradient(80deg, var(--negative), transparent);
 }
 
 div.blue {
@@ -124,6 +190,7 @@ table {
 
 table th, table td {
   padding:12px;text-align:left;border-bottom:1px solid;
+  color: var(--text)
 }
 
 
@@ -145,7 +212,7 @@ table thead th {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navigation Horizontal */
 
-nav a {
+/* nav a {
   display:block;
   text-decoration:none;
   padding:8px;
@@ -176,12 +243,12 @@ ul li a {
 
 ul li a:hover {
   background-color: #111111;
-}
+} */
 
 /* --------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navigation Vertical */
 
-/* nav a {
+nav a {
   display:block;
   text-decoration:none;
   padding:8px;
@@ -212,7 +279,7 @@ li a {
 li a:hover {
   background-color: #555555;
   color: white;
-} */
+}
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -220,4 +287,3 @@ img {
   padding-left: 10px;
   padding-top: 10px;
 }
-
