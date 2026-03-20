@@ -79,7 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const ORDER_API = "http://localhost:8082/api/order/getorders";
   const INVENTORY_API = "http://localhost:8081/api/inventory";
 
-  document.getElementById("btnReloadOrders").addEventListener("click", async () => {
+// document.getElementById("btnReloadOrders").addEventListener("click", async () => {
+//   try {
+//     const data = await apiFetch("http://localhost:8082/api/order/getorders", {method : "GET"});
+//     orders = (Array.isArray(data) ? data : []).map(o => ({
+//       orderId: o.orderId ?? o.id,
+//       inventory: {
+//         inventoryId: o.inventoryId ?? o.inventory?.inventoryId ?? null,
+//         productName: o.productName ?? o.inventory?.productName ?? null,
+//         quantity: (o.quantity ?? o.inventory?.quantity ?? 0),
+//         available: Boolean(o.available ?? o.inventory?.available),
+//       }
+//     }));
+//     renderOrders();
+//   } catch (error) {
+//     alert("Kunde inte hämta ordrar: " + error.message);
+//   }
+
+// });
+
+  async function getOrder() {
     try {
       const data = await apiFetch("http://localhost:8082/api/order/getorders", {method : "GET"});
       orders = (Array.isArray(data) ? data : []).map(o => ({
@@ -96,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("Kunde inte hämta ordrar: " + error.message);
     }
 
-  });
+  }
 
 
   document.getElementById("btnReserve").addEventListener("click", async () => {
@@ -329,3 +348,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
